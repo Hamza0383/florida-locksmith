@@ -116,6 +116,13 @@ li a:not([class]),
   text-decoration-thickness: 1px;
 }
 
+nav p a,
+nav li a:not([class]),
+footer p a,
+footer li a:not([class]) {
+  text-decoration: none;
+}
+
 h1,
 h2,
 h3,
@@ -1447,12 +1454,12 @@ textarea.form-control {
   padding: 1.25rem 0;
   text-align: center;
   font-size: .8rem;
-  color: rgba(255, 255, 255, .7);
+  color: #ffffff;
 }
 
 .footer-bottom a {
-  color: rgba(255, 255, 255, .8);
-  text-decoration: underline;
+  color: #ffffff;
+  text-decoration: none;
 }
 
 .footer-bottom a:hover {
