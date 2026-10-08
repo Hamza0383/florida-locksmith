@@ -13,11 +13,21 @@
   /* ── Sticky Header ────────────────────────────────────────── */
   const header = $('.site-header');
   if (header) {
-    const onScroll = () => {
+    /* Read scroll position inside requestAnimationFrame and throttle it,
+       so it never forces a synchronous layout during load or scrolling. */
+    let ticking = false;
+    const update = () => {
+      ticking = false;
       header.classList.toggle('scrolled', window.scrollY > 30);
     };
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    };
     window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
+    requestAnimationFrame(update);
   }
 
   /* ── Mobile Navigation ────────────────────────────────────── */
