@@ -80,7 +80,7 @@ print(f'styles.css {os.path.getsize(SRC)/1024:.1f} KiB -> styles.min.css {len(fu
 BLOCK = ('<!--critical-css:start--><style>' + crit + '</style>\n'
          '    <link rel="preload" href="/css/styles.min.css" as="style" onload="this.onload=null;this.rel=\'stylesheet\'" />\n'
          '    <noscript><link rel="stylesheet" href="/css/styles.min.css" /></noscript><!--critical-css:end-->')
-HERO_PRELOAD = '<link rel="preload" as="image" href="/images/north-floorida-locksmith-banner.webp" fetchpriority="high" />'
+HERO_PRELOAD = '<link rel="preload" as="image" href="/images/north-florida-locksmith-banner.webp" fetchpriority="high" />'
 
 for f in glob.glob(os.path.join(ROOT, '*.html')):
     s = open(f).read()
@@ -89,7 +89,7 @@ for f in glob.glob(os.path.join(ROOT, '*.html')):
     else:
         s, n = re.subn(r'<link rel="stylesheet" href="/?css/styles\.css" />', lambda m: BLOCK, s)
         assert n == 1, f
-    if 'north-floorida-locksmith-banner.webp" fetchpriority' not in s:
+    if 'north-florida-locksmith-banner.webp" fetchpriority' not in s:
         s = s.replace('<!--critical-css:start-->', HERO_PRELOAD + '\n    <!--critical-css:start-->', 1)
     open(f, 'w').write(s)
 print('updated pages')
